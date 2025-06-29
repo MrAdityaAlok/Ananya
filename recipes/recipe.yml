@@ -1,0 +1,105 @@
+# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
+
+name: Ananya
+description: This is my personal OS based on Fedora Atomic
+
+base-image: quay.io/fedora-ostree-desktops/base-atomic
+image-version: 42
+
+modules:
+  - type: files
+    files:
+      - source: system
+        destination: /
+
+  - type: script
+    scripts:
+      - setup-android-udev-rules.sh
+      - install-ublue-os-packages.sh
+      - fix-fedora-2332429.sh # Remove when updating to fedora 43.
+      - install-cachyos-kernel.sh # `uksmd` service is enabled below.
+      - add-image-info.sh
+
+  - type: systemd
+    system:
+      enabled:
+        - uksmd.service
+        - rpm-ostreed-automatic.timer
+        - flatpak-system-update.timer
+    user:
+      enabled:
+        - flatpak-user-update.timer
+
+  - type: bling
+    install:
+      - negativo17
+
+  - type: rpm-ostree
+    replace:
+      - from-repo: https://negativo17.org/repos/fedora-multimedia.repo
+        packages:
+          - libheif
+          - libva
+          - libva-intel-media-driver
+          - mesa-dri-drivers
+          - mesa-filesystem
+          - mesa-libEGL
+          - mesa-libGL
+          - mesa-libgbm
+          - mesa-libxatracker
+          - mesa-va-drivers
+          - mesa-vulkan-drivers
+          - rar
+          - gstreamer1-plugin-libav
+          - gstreamer1-plugin-vaapi
+
+  - type: rpm-ostree
+    repos:
+      - https://copr.fedorainfracloud.org/coprs/atim/starship/repo/fedora-%OS_VERSION%/atim-starship-fedora-%OS_VERSION%.repo
+    install:
+      - starship
+
+      # Multimedia and codecs:
+      - heif-pixbuf-loader
+      - ffmpeg
+      - ffmpeg-libs
+      - ffmpegthumbnailer
+      - pipewire-libs-extra
+      - libfdk-aac
+      - gstreamer1-plugins-ugly
+
+  - type: rpm-ostree
+    remove:
+      - firefox # In favour of zen.
+      - firefox-langpacks
+      - gstreamer1-plugins-bad-free
+      - gstreamer1-plugins-bad-free-libs
+      - gstreamer1-plugins-ugly-free
+      - gstreamer1-plugin-vaapi
+      - fdk-aac-free
+      - ffmpeg-free
+      - libavcodec-free
+      - libavdevice-free
+      - libavfilter-free
+      - libavformat-free
+      - libavutil-free
+      - libpostproc-free
+      - libswresample-free
+      - libswscale-free
+
+  - type: bling
+    install:
+      - rpmfusion # Wee do not need `negativo17` now.
+
+  - type: default-flatpaks
+    notify: true
+    system:
+      install:
+        - app.zen_browser.zen
+        - org.gnome.Loupe
+      remove:
+        - org.gnome.eog
+    user: {} # Also add Flathub user repo, but no user packages.
+
+  - type: signing
+  - type: initramfs
