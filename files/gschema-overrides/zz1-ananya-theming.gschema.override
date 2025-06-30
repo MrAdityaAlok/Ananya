@@ -1,0 +1,6 @@
+[org.gnome.desktop.interface]
+gtk-theme='adw-gtk3'
+icon-theme='Papirus'
+
+[org.gnome.Loupe]
+show-properties=false

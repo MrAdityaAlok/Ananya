@@ -1,0 +1,140 @@
+modules:
+  - type: files
+    files:
+      - source: system
+        destination: /
+
+  - type: script
+    scripts:
+      - setup-android-udev-rules.sh
+      - install-ublue-os-packages.sh
+      - fix-fedora-2332429.sh # Remove when updating to fedora 43.
+      - install-cachyos-kernel.sh # `uksmd` service is enabled below.
+      - add-image-info.sh
+
+  - type: systemd
+    system:
+      enabled:
+        - uksmd.service
+        - rpm-ostreed-automatic.timer
+        - flatpak-system-update.timer
+      disabled:
+        - flatpak-add-fedora-repos.service
+    user:
+      enabled:
+        - flatpak-user-update.timer
+
+  - type: bling
+    install:
+      - negativo17
+
+  # Multimedia codecs and proprietary packages from negativo17:
+  - type: rpm-ostree
+    install:
+      - heif-pixbuf-loader
+      - ffmpeg
+      - ffmpeg-libs
+      - ffmpegthumbnailer
+      - pipewire-libs-extra
+      - libfdk-aac
+      - gstreamer1-plugins-bad
+      - gstreamer1-plugins-ugly
+      - gstreamer1-plugin-libav
+      - libheif
+      - libva
+      - libva-intel-media-driver
+      - mesa-dri-drivers
+      - mesa-filesystem
+      - mesa-libEGL
+      - mesa-libGL
+      - mesa-libgbm
+      - mesa-libxatracker
+      - mesa-va-drivers
+      - mesa-vulkan-drivers
+      - rar
+      - intel-vaapi-driver
+    remove:
+      - gstreamer1-plugins-bad-free
+      - gstreamer1-plugins-bad-free-libs
+      - gstreamer1-plugins-ugly-free
+      - fdk-aac-free
+      - ffmpeg-free
+      - libavcodec-free
+      - libavdevice-free
+      - libavfilter-free
+      - libavformat-free
+      - libavutil-free
+      - libpostproc-free
+      - libswresample-free
+      - libswscale-free
+
+  - type: rpm-ostree
+    repos:
+      - https://copr.fedorainfracloud.org/coprs/atim/starship/repo/fedora-%OS_VERSION%/atim-starship-fedora-%OS_VERSION%.repo
+    install:
+      - kitty
+      - fish
+      - starship
+      - fzf
+      - zoxide
+      - fastfetch
+      - btop
+      - neovim
+      - wl-clipboard
+      - android-tools
+      - distrobox
+      - adw-gtk3-theme
+      - papirus-icon-theme
+    remove:
+      - firefox # In favour of zen.
+      - firefox-langpacks
+
+  - type: script
+    scripts:
+      - download-eza.sh
+
+  - type: copy
+    from: neovide
+    src: /out/neovide
+    dest: /usr/bin/neovide
+  - type: copy
+    from: neovide
+    src: /out/neovide.desktop
+    dest: /usr/share/applications/neovide.desktop
+  - type: copy
+    from: neovide
+    src: /out/neovide.svg
+    dest: /usr/share/icons/hicolor/scalable/apps/neovide.svg
+
+  # Fix permissions of neovide package:
+  - type: script
+    snippets:
+      - chmod 0755 /usr/bin/neovide
+      - chmod 0644 /usr/share/applications/neovide.desktop
+      - chmod 0644 /usr/share/icons/hicolor/scalable/apps/neovide.svg
+
+  - type: default-flatpaks
+    notify: true
+    system:
+      install:
+        - com.stremio.Stremio
+        - app.zen_browser.zen
+        - org.gnome.Loupe
+        - org.videolan.VLC
+      remove:
+        - org.gnome.eog
+    user: {} # Also add Flathub user repo, but no user packages.
+
+  - type: fonts
+    fonts:
+      nerd-fonts:
+        - FiraCode
+        - Iosevka
+        - JetBrainsMono
+        - NerdFontsSymbolsOnly
+
+  - type: gschema-overrides
+
+  - type: bling
+    install:
+      - rpmfusion # Wee do not need `negativo17` now.

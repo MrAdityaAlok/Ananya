@@ -23,7 +23,7 @@ jobs:
       fail-fast: false # Stop GH from cancelling all matrix builds if one fails.
       matrix:
         recipe:
-          - recipe.yml
+          - hyprland.yml
     steps:
       - name: Build Image
         uses: blue-build/github-action@v1.8

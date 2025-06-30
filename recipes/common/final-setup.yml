@@ -1,0 +1,6 @@
+modules:
+  - type: script
+    scripts:
+      - cleanup.sh
+  - type: initramfs
+  - type: signing

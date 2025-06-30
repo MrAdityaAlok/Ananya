@@ -1,0 +1,57 @@
+# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
+
+name: ananya-hyprland
+description: This is my personal OS based on Fedora Atomic
+
+base-image: quay.io/fedora-ostree-desktops/base-atomic
+image-version: 42
+
+stages:
+  - name: neovide
+    from: docker.io/rust:latest
+    modules:
+      - type: script
+        scripts:
+          - build-neovide.sh
+
+modules:
+  - from-file: common/common-setup.yml
+
+  - type: rpm-ostree
+    repos:
+      - https://copr.fedorainfracloud.org/coprs/solopasha/hyprland/repo/fedora-%OS_VERSION%/solopasha-hyprland-fedora-%OS_VERSION%.repo
+    install:
+      # Hyprland and related:
+      - uwsm
+      - hyprland
+      - hypridle
+      - hyprlock
+      - hyprpolkitagent
+      - hyprsunset
+      - xdg-desktop-portal-hyprland
+      - xdg-desktop-portal-gtk
+      - qt5-qtwayland
+      - qt6-qtwayland
+      - rofi-wayland
+      - dunst
+      - waybar
+      - brightnessctl
+      - swww
+      - matugen
+      - hyprshot
+
+      # File manager:
+      - nautilus
+      - gvfs-fuse
+      - gvfs-archive
+      - gvfs-mtp
+
+      # Misc:
+      - cava
+      - google-noto-emoji-fonts
+
+  - type: script
+    scripts:
+      - download-clipse.sh
+
+  - from-file: common/final-setup.yml
