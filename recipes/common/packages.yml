@@ -7,29 +7,27 @@ modules:
         - https://negativo17.org/repos/fedora-multimedia.repo
     install:
       packages:
-        - repo: fedora-multimedia
-          packages:
-            - heif-pixbuf-loader
-            - ffmpeg
-            - ffmpeg-libs
-            - ffmpegthumbnailer
-            - pipewire-libs-extra
-            - libfdk-aac
-            - gstreamer1-plugins-bad
-            - gstreamer1-plugin-libav
-            - libheif
-            - libva
-            - libva-intel-media-driver
-            - mesa-dri-drivers
-            - mesa-filesystem
-            - mesa-libEGL
-            - mesa-libGL
-            - mesa-libgbm
-            - mesa-libxatracker
-            - mesa-va-drivers
-            - mesa-vulkan-drivers
-            - rar
-            - intel-vaapi-driver
+        - heif-pixbuf-loader
+        - ffmpeg
+        - ffmpeg-libs
+        - ffmpegthumbnailer
+        - pipewire-libs-extra
+        - libfdk-aac
+        - gstreamer1-plugins-bad
+        - gstreamer1-plugin-libav
+        - libheif
+        - libva
+        - libva-intel-media-driver
+        - mesa-dri-drivers
+        - mesa-filesystem
+        - mesa-libEGL
+        - mesa-libGL
+        - mesa-libgbm
+        - mesa-libxatracker
+        - mesa-va-drivers
+        - mesa-vulkan-drivers
+        - rar
+        - intel-vaapi-driver
     remove:
       packages:
         - gstreamer1-plugins-bad-free
