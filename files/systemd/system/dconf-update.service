@@ -1,0 +1,9 @@
+[Unit]
+Description=Update the dconf database on boot
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/dconf update
+
+[Install]
+WantedBy=multi-user.target

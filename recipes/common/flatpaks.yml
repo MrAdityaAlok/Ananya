@@ -1,0 +1,12 @@
+modules:
+  - type: default-flatpaks
+    notify: true
+    system:
+      install:
+        - com.stremio.Stremio
+        - app.zen_browser.zen
+        - org.gnome.Loupe
+        - org.videolan.VLC
+      remove:
+        - org.gnome.eog
+    user: {} # Also add Flathub user repo, but no user packages.

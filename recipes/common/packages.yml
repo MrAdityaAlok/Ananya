@@ -1,0 +1,78 @@
+modules:
+  # Multimedia codecs and proprietary packages from negativo17:
+  - type: dnf
+    repos:
+      cleanup: true
+      files:
+        - https://negativo17.org/repos/fedora-multimedia.repo
+    install:
+      packages:
+        - repo: fedora-multimedia
+          packages:
+            - heif-pixbuf-loader
+            - ffmpeg
+            - ffmpeg-libs
+            - ffmpegthumbnailer
+            - pipewire-libs-extra
+            - libfdk-aac
+            - gstreamer1-plugins-bad
+            - gstreamer1-plugin-libav
+            - libheif
+            - libva
+            - libva-intel-media-driver
+            - mesa-dri-drivers
+            - mesa-filesystem
+            - mesa-libEGL
+            - mesa-libGL
+            - mesa-libgbm
+            - mesa-libxatracker
+            - mesa-va-drivers
+            - mesa-vulkan-drivers
+            - rar
+            - intel-vaapi-driver
+    remove:
+      packages:
+        - gstreamer1-plugins-bad-free
+        - gstreamer1-plugins-bad-free-libs
+        - gstreamer1-plugins-ugly-free
+        - fdk-aac-free
+        - ffmpeg-free
+        - libavcodec-free
+        - libavdevice-free
+        - libavfilter-free
+        - libavformat-free
+        - libavutil-free
+        - libpostproc-free
+        - libswresample-free
+        - libswscale-free
+
+  - type: dnf
+    repos:
+      copr:
+        - atim/starship
+    install:
+      packages:
+        - starship
+        - kitty
+        - fish
+        - starship
+        - fzf
+        - zoxide
+        - fastfetch
+        - btop
+        - neovim
+        - wl-clipboard
+
+        - android-tools
+        - distrobox
+
+        - adw-gtk3-theme
+        - papirus-icon-theme
+    remove:
+      packages:
+        - firefox
+        - firefox-langpacks
+
+  - type: bling
+    install:
+      - rpmfusion

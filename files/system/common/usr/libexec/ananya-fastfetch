@@ -1,0 +1,11 @@
+#!/usr/bin/bash
+
+set -eou pipefail
+
+DEFAULT_LOGO="/usr/share/ananya/logos/fastfetch/flower.png"
+
+if [[ "$*" == *"--logo"* || "$*" == *"--logo-type"* ]]; then
+  fastfetch "$@"
+else
+  fastfetch --logo-type kitty-direct --logo-width 45 --logo "$DEFAULT_LOGO" "$@"
+fi
