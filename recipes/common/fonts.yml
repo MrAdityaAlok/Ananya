@@ -1,12 +1,9 @@
 modules:
-  - type: rpm-ostree
-    remove:
-      - google-noto-fonts-all # In favour of Raleway.
-
   # Keep emoji font:
-  - type: rpm-ostree
+  - type: dnf
     install:
-      - google-noto-emoji-fonts
+      packages:
+        - google-noto-color-emoji-font
 
   - type: fonts
     fonts:
