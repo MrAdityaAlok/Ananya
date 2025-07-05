@@ -1,17 +1,12 @@
 modules:
   - type: dnf
-    remove:
-      packages:
-        - google-noto-*
     install:
       packages:
-        - ibm-plex-sans-devanagari-fonts
         - google-noto-color-emoji-fonts
 
   - type: fonts
     fonts:
       nerd-fonts:
         - Iosevka
+        - CodeNewRoman
         - NerdFontsSymbolsOnly
-      google-fonts:
-        - Inter
