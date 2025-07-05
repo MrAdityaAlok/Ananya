@@ -19,6 +19,8 @@ curl -Lo /etc/yum.repos.d/_copr-cachyos-kernel-addons.repo \
 dnf5 -y install libcap-ng-devel procps-ng-devel
 dnf5 -y install uksmd
 
+systemctl enable uksmd.service
+
 dnf5 versionlock add kernel-cachyos libcap-ng-devel procps-ng-devel uksmd
 
 rm /etc/yum.repos.d/_copr-cachyos-kernel.repo
