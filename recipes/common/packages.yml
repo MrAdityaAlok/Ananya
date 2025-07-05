@@ -70,21 +70,21 @@ modules:
           - mesa-vulkan-drivers
           - rar
           - intel-vaapi-driver
-    # remove:
-    #   packages:
-    #     - gstreamer1-plugins-bad-free
-    #     - gstreamer1-plugins-bad-free-libs
-    #     - gstreamer1-plugins-ugly-free
-    #     - fdk-aac-free
-    #     - ffmpeg-free
-    #     - libavcodec-free
-    #     - libavdevice-free
-    #     - libavfilter-free
-    #     - libavformat-free
-    #     - libavutil-free
-    #     - libpostproc-free
-    #     - libswresample-free
-    #     - libswscale-free
+    remove:
+      packages:
+        - gstreamer1-plugins-bad-free
+        - gstreamer1-plugins-bad-free-libs
+        - gstreamer1-plugins-ugly-free
+        - fdk-aac-free
+        - ffmpeg-free
+        - libavcodec-free
+        - libavdevice-free
+        - libavfilter-free
+        - libavformat-free
+        - libavutil-free
+        - libpostproc-free
+        - libswresample-free
+        - libswscale-free
 
   - type: dnf
     repos:
