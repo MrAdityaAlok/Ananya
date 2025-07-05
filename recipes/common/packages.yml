@@ -5,7 +5,6 @@ modules:
       cleanup: true
       copr:
         - bieszczaders/kernel-cachyos
-        - bieszczaders/kernel-cachyos-addons
     remove:
       packages:
         - kernel
@@ -18,16 +17,6 @@ modules:
         - kernel-cachyos
         - libcap-ng-devel
         - procps-ng-devel
-        - uksmd
-
-  - type: dnf
-    repos:
-      cleanup: true
-      copr:
-        - bieszczaders/kernel-cachyos-addons
-    install:
-      packages:
-        - uksmd
 
   # Fix for fedora 42 bug (https://bugzilla.redhat.com/show_bug.cgi?id=2332429):
   - type: dnf

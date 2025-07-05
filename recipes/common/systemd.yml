@@ -2,7 +2,6 @@ modules:
   - type: systemd
     system:
       enabled:
-        - uksmd.service
         - dconf-update.service
         - rpm-ostreed-automatic.timer
         - flatpak-system-update.timer
