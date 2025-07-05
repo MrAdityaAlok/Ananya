@@ -1,8 +1,11 @@
 modules:
-  # Keep emoji font:
   - type: dnf
+    remove:
+      packages:
+        - google-noto-*
     install:
       packages:
+        - ibm-plex-sans-devanagari-fonts
         - google-noto-color-emoji-fonts
 
   - type: fonts
@@ -11,4 +14,4 @@ modules:
         - Iosevka
         - NerdFontsSymbolsOnly
       google-fonts:
-        - Raleway
+        - Inter
