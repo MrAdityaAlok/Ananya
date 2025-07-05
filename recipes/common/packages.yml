@@ -5,6 +5,7 @@ modules:
       cleanup: true
       copr:
         - bieszczaders/kernel-cachyos
+        - bieszczaders/kernel-cachyos-addons
     remove:
       packages:
         - kernel
