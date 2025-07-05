@@ -7,4 +7,7 @@ curl -Lo /etc/yum.repos.d/_copr-ublue-os-packages.repo \
 
 dnf5 -y install ublue-os-update-services
 
+systemctl enable flatpak-system-update.timer
+systemctl enable --global flatpak-user-update.timer
+
 rm /etc/yum.repos.d/_copr-ublue-os-packages.repo
