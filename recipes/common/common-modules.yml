@@ -8,4 +8,4 @@ modules:
   - from-file: common/flatpaks.yml
   - from-file: common/fonts.yml
   - from-file: common/systemd.yml
-  - from-file: common/scripts.yml
+  # - from-file: common/scripts.yml

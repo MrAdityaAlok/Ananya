@@ -1,48 +1,89 @@
 modules:
+  # CachyOs Kernel:
+  - type: dnf
+    repos:
+      cleanup: true
+      copr:
+        - bieszczaders/kernel-cachyos
+    remove:
+      packages:
+        - kernel
+        - kernel-core
+        - kernel-modules
+        - kernel-modules-core
+        - kernel-modules-extra
+    install:
+      packages:
+        - kernel-cachyos
+        - libcap-ng-devel
+        - procps-ng-devel
+        - uksmd
+
+  # Fix for fedora 42 bug (https://bugzilla.redhat.com/show_bug.cgi?id=2332429):
+  - type: dnf
+    replace:
+      - from-repo: fedora
+        packages:
+          - old: OpenCL-ICD-Loader
+            new: ocl-icd
+
+  # ublue-os packages:
+  - type: dnf
+    repos:
+      cleanup: true
+      copr:
+        - ublue-os/packages
+        - ublue-os/staging
+    install:
+      packages:
+        - ublue-os-update-services
+        - android-udev-rules
+
   # Multimedia codecs and proprietary packages from negativo17:
   - type: dnf
     repos:
       cleanup: true
       files:
         - https://negativo17.org/repos/fedora-multimedia.repo
-    install:
-      packages:
-        - heif-pixbuf-loader
-        - ffmpeg
-        - ffmpeg-libs
-        - ffmpegthumbnailer
-        - pipewire-libs-extra
-        - libfdk-aac
-        - gstreamer1-plugins-bad
-        - gstreamer1-plugin-libav
-        - libheif
-        - libva
-        - libva-intel-media-driver
-        - mesa-dri-drivers
-        - mesa-filesystem
-        - mesa-libEGL
-        - mesa-libGL
-        - mesa-libgbm
-        - mesa-libxatracker
-        - mesa-va-drivers
-        - mesa-vulkan-drivers
-        - rar
-        - intel-vaapi-driver
-    remove:
-      packages:
-        - gstreamer1-plugins-bad-free
-        - gstreamer1-plugins-bad-free-libs
-        - gstreamer1-plugins-ugly-free
-        - fdk-aac-free
-        - ffmpeg-free
-        - libavcodec-free
-        - libavdevice-free
-        - libavfilter-free
-        - libavformat-free
-        - libavutil-free
-        - libpostproc-free
-        - libswresample-free
-        - libswscale-free
+    replace:
+      - from-repo: fedora-multimedia
+        packages:
+          - heif-pixbuf-loader
+          - ffmpeg
+          - ffmpeg-libs
+          - ffmpegthumbnailer
+          - pipewire-libs-extra
+          - libfdk-aac
+          - gstreamer1-plugins-bad
+          - gstreamer1-plugin-libav
+          - libheif
+          - libva
+          - libva-intel-media-driver
+          - mesa-dri-drivers
+          - mesa-filesystem
+          - mesa-libEGL
+          - mesa-libGL
+          - mesa-libgbm
+          - mesa-libxatracker
+          - mesa-va-drivers
+          - mesa-vulkan-drivers
+          - rar
+          - intel-vaapi-driver
+    # remove:
+    #   packages:
+    #     - gstreamer1-plugins-bad-free
+    #     - gstreamer1-plugins-bad-free-libs
+    #     - gstreamer1-plugins-ugly-free
+    #     - fdk-aac-free
+    #     - ffmpeg-free
+    #     - libavcodec-free
+    #     - libavdevice-free
+    #     - libavfilter-free
+    #     - libavformat-free
+    #     - libavutil-free
+    #     - libpostproc-free
+    #     - libswresample-free
+    #     - libswscale-free
 
   - type: dnf
     repos:
@@ -70,6 +111,10 @@ modules:
       packages:
         - firefox
         - firefox-langpacks
+
+  - type: script
+    scripts:
+      - install-prebuilt-binaries.sh
 
   - type: bling
     install:
