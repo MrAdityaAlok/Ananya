@@ -36,4 +36,4 @@ modules:
 
   - type: gschema-overrides
     include:
-      - zz1-hyprland-theming.gschema.override
+      - zz1-ananya-hyprland-theming.gschema.override

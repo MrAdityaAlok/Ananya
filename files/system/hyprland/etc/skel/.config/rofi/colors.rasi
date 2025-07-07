@@ -1,0 +1,6 @@
+* {
+    text-color: #b7c9d8;
+    selected-color: #101518;
+    border-color: #8b9198;
+    background-color: rgba(49, 53, 57, 0.5);
+}

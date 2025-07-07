@@ -1,0 +1,114 @@
+@import url('./colors.css');
+
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "CodeNewRoman Nerd Font Propo";
+    font-size: 14px;
+    font-weight: 900;
+    /*min-height: 25px;*/
+}
+
+window#waybar {
+    background: rgba(17, 17, 27, 0.5);
+    border-radius: 10px;
+    transition-property: background-color;
+    transition-duration: .5s;
+    color: @primary;
+}
+
+#workspaces {
+    /* background-color: rgba(17, 17, 27, 0.5); */
+    border-radius: 10px;
+    margin: 5px;
+    padding: 0 5px;
+}
+
+#workspaces button {
+    padding: 5px;
+    color: @primary;
+    margin: 0 3px;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+}
+
+#workspaces button.active {
+    color: @tertiary;
+    /* background: rgba(30, 30, 46, 0.5); */
+}
+
+#workspaces button:hover {
+    /* background: rgba(30, 30, 46, 0.4); */
+    color: @primary;
+}
+
+/*#window {*/
+/*text-shadow: white 2px 2px 5px;*/
+/*}*/
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#idle_inhibitor,
+#custom-night-light,
+#network,
+#bluetooth,
+#pulseaudio,
+#custom-calendar,
+#custom-power,
+#tray {
+    /* background-color: rgba(17, 17, 27, 0.5); */
+    padding: 0 10px;
+    margin: 5px 0;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+    margin-right: 5px;
+    color: @primary;
+}
+
+#custom-calendar {
+    margin-left: 0;
+    border-radius: 10px;
+}
+
+#battery.warning:not(.charging) {
+    color: @secondary;
+}
+
+#battery.critical:not(.charging) {
+    color: @error;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#network {
+    min-width: 85px;
+}
+
+#custom-power {
+    color: @primary;
+    margin-right: 5px;
+    padding-right: 12px;
+}
+
+@keyframes blink {
+    to {
+        background-color: @error;
+        color: rgb(17, 17, 27);
+    }
+}
+
+tooltip {
+    background: rgba(17, 17, 27, 0.3);
+    border: 1px solid #313244;
+    border-radius: 10px;
+}
+
+tooltip label {
+    color: @primary;
+}
+

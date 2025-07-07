@@ -1,0 +1,16 @@
+[org.gnome.desktop.interface]
+gtk-theme='adw-gtk3'
+icon-theme='Papirus'
+cursor-theme='BreezeX-RosePine-Linux'
+font-name='Noto Sans 13'
+font-hinting='full'
+font-antialiasing='rgba'
+
+[org.gnome.nautilus.list-view]
+use-tree-view=true
+
+[org.gnome.nautilus.preferences]
+show-create-link=true
+
+[org.gnome.Loupe]
+show-properties=true

@@ -1,9 +1,0 @@
-modules:
-  - type: script
-    scripts:
-      # - setup-android-udev-rules.sh
-      # - install-ublue-os-packages.sh
-      # - fix-fedora-2332429.sh # Remove when updating to fedora 43.
-      # - install-cachyos-kernel.sh
-      # - install-prebuilt-packages.sh
-      - add-image-info.sh
